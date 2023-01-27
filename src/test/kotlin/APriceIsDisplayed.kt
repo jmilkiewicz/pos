@@ -36,7 +36,7 @@ class APriceIsDisplayed {
         val display = FakeDisplay()
         PointOfSale(display, barCodeRepository).onBarCode("-12")
 
-        assertThat(display.lastDisplayed(), equalTo(Response.ProductNotFound))
+        assertThat(display.lastDisplayed(), equalTo(Response.ProductNotFound("-12")))
     }
 
 }

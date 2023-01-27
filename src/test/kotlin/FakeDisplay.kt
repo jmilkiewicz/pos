@@ -2,7 +2,7 @@ import display.Display
 import display.Response
 
 class FakeDisplay : Display {
-    private var response: Response = Response.ProductNotFound
+    private var response: Response = Response.ProductNotFound("-1")
     override fun lastDisplayed(): Response {
         return response
     }

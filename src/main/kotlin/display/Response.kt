@@ -2,7 +2,7 @@ package display
 
 
 sealed class Response {
-    object ProductNotFound : Response()
+    data class ProductNotFound(val barCode: String) : Response()
     data class Price(val productPrice: String) : Response()
 }
 
