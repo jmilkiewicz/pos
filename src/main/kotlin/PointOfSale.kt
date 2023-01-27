@@ -5,16 +5,20 @@ import price.PriceCatalogue
 
 class PointOfSale(private val display: Display, private val priceCatalogue: PriceCatalogue) {
     fun onBarCode(barcode: String) {
-        if (barcode.isBlank()) {
-            display.show(Response.EmptyBarCode)
+        val response = getResponse(barcode)
+        display.show(response)
+    }
+
+    private fun getResponse(barcode: String): Response {
+        return if (barcode.isBlank()) {
+            Response.EmptyBarCode
         } else {
             val price = findPrice(barcode)
-            val response = determineResponseToShow(price, barcode)
-            display.show(response)
+            convertToResponse(price, barcode)
         }
     }
 
-    private fun determineResponseToShow(price: Price?, barcode: String): Response {
+    private fun convertToResponse(price: Price?, barcode: String): Response {
         //this is a place for formatting - is formatting special for device or a logic of application
         return price?.let { Response.Price(it.value.toString()) } ?: Response.ProductNotFound(barcode)
     }
