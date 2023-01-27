@@ -1,9 +1,9 @@
 import display.Display
 import display.Response
 import price.Price
-import price.PriceRepository
+import price.PriceCatalogue
 
-class PointOfSale(private val display: Display, private val priceRepository: PriceRepository) {
+class PointOfSale(private val display: Display, private val priceCatalogue: PriceCatalogue) {
     fun onBarCode(barcode: String) {
         val price = findPrice(barcode)
         val response = determineResponseToShow(price)
@@ -16,7 +16,7 @@ class PointOfSale(private val display: Display, private val priceRepository: Pri
     }
 
     private fun findPrice(barcode: String): Price? {
-        return priceRepository.getPriceByBarCode(barcode)
+        return priceCatalogue.getPriceByBarCode(barcode)
     }
 
 }

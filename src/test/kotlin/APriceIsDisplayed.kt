@@ -2,8 +2,7 @@ import display.Response
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.equalTo
 import org.junit.jupiter.api.Test
-import price.Price
-import price.PriceRepository
+import price.PriceCatalogue
 
 class APriceIsDisplayed {
 
@@ -11,7 +10,7 @@ class APriceIsDisplayed {
 //    "34546" -> 15
 //    "21342" -> 17
 
-    private val barCodeRepository: PriceRepository = FakePriceRepository(mapOf("12345" to "11", "34546" to "15"))
+    private val barCodeRepository: PriceCatalogue = FakePriceCatalogue(mapOf("12345" to "11", "34546" to "15"))
     @Test
     internal fun showsValidPriceForValidBarcode() {
         val display = FakeDisplay()

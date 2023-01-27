@@ -1,5 +1,5 @@
 package price
 
-interface PriceRepository {
+interface PriceCatalogue {
     fun getPriceByBarCode(barcode: String): Price?
 }
