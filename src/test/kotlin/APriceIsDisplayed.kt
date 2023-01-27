@@ -3,6 +3,7 @@ import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.equalTo
 import org.junit.jupiter.api.Test
 import price.PriceCatalogue
+import java.math.BigDecimal
 
 class APriceIsDisplayed {
 
@@ -10,12 +11,14 @@ class APriceIsDisplayed {
 //    "34546" -> 15
 //    "21342" -> 17
 
-    private val barCodeRepository: PriceCatalogue = FakePriceCatalogue(mapOf("12345" to "11", "34546" to "15"))
+    private val barCodeRepository: PriceCatalogue =
+        FakePriceCatalogue(mapOf("12345" to BigDecimal("11"), "34546" to BigDecimal("15")))
+
     @Test
     internal fun showsValidPriceForValidBarcode() {
         val display = FakeDisplay()
 
-        PointOfSale(display, barCodeRepository ).onBarCode("12345")
+        PointOfSale(display, barCodeRepository).onBarCode("12345")
 
         assertThat(display.lastDisplayed(), equalTo(Response.Price("11")))
     }
