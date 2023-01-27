@@ -1,0 +1,15 @@
+*.swp
+*.tmp
+*.bin
+.classpath
+.DS_Store
+*.jar
+.project
+.settings/
+target/
+*.iml
+.idea
+node_modules/
+dependency-reduced-pom.xml
+.vscode
+dist/
