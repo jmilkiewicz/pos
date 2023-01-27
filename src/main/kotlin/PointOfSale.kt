@@ -5,9 +5,13 @@ import price.PriceCatalogue
 
 class PointOfSale(private val display: Display, private val priceCatalogue: PriceCatalogue) {
     fun onBarCode(barcode: String) {
-        val price = findPrice(barcode)
-        val response = determineResponseToShow(price, barcode)
-        display.show(response)
+        if (barcode.isBlank()) {
+            display.show(Response.EmptyBarCode)
+        } else {
+            val price = findPrice(barcode)
+            val response = determineResponseToShow(price, barcode)
+            display.show(response)
+        }
     }
 
     private fun determineResponseToShow(price: Price?, barcode: String): Response {
