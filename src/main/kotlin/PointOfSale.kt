@@ -1,17 +1,14 @@
 import display.Display
+import price.PriceRepository
 
-class PointOfSale(val display: Display) {
+class PointOfSale(private val display: Display, private val barCodeRepository: PriceRepository) {
     fun onBarCode(barcode: String) {
         val price = findPrice(barcode)
         display.show(price)
     }
 
     private fun findPrice(barcode: String): String {
-        return if (barcode == "12345") {
-            "11"
-        } else if (barcode == "34546")
-            "15"
-        else ""
+        return barCodeRepository.getPriceByBarCode(barcode)!!
     }
 
 }

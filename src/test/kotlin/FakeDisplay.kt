@@ -1,4 +1,4 @@
-package display
+import display.Display
 
 class FakeDisplay : Display {
     private var text = ""
