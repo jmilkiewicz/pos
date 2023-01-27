@@ -1,13 +1,14 @@
 import display.Display
+import display.Response
 
 class FakeDisplay : Display {
-    private var text = ""
-    override fun lastDisplayed(): String {
-        return text
+    private var response: Response = Response.ProductNotFound
+    override fun lastDisplayed(): Response {
+        return response
     }
 
-    override fun show(toShow: String) {
-        text = toShow
+    override fun show(response: Response) {
+        this.response = response
     }
 
 

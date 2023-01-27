@@ -1,6 +1,6 @@
 package display
 
 interface Display {
-    fun lastDisplayed(): String
-    fun show(barcode: String)
+    fun lastDisplayed(): Response
+    fun show(response: Response)
 }

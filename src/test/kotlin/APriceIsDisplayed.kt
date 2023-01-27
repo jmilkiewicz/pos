@@ -1,6 +1,8 @@
+import display.Response
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.equalTo
 import org.junit.jupiter.api.Test
+import price.Price
 import price.PriceRepository
 
 class APriceIsDisplayed {
@@ -16,7 +18,7 @@ class APriceIsDisplayed {
 
         PointOfSale(display, barCodeRepository ).onBarCode("12345")
 
-        assertThat(display.lastDisplayed(), equalTo("11"))
+        assertThat(display.lastDisplayed(), equalTo(Response.Price("11")))
     }
 
     @Test
@@ -24,6 +26,15 @@ class APriceIsDisplayed {
         val display = FakeDisplay()
         PointOfSale(display, barCodeRepository).onBarCode("34546")
 
-        assertThat(display.lastDisplayed(), equalTo("15"))
+        assertThat(display.lastDisplayed(), equalTo(Response.Price("15")))
     }
+
+    @Test
+    internal fun showsProductNotFoundWhenNotMatch() {
+        val display = FakeDisplay()
+        PointOfSale(display, barCodeRepository).onBarCode("-12")
+
+        assertThat(display.lastDisplayed(), equalTo(Response.ProductNotFound))
+    }
+
 }
